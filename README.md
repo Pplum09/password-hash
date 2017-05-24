@@ -14,7 +14,7 @@ Currently, I'm not too sure if a regular clone of this repo will give you a plug
 # to run the program
 ruby auth.rb
 ```
-```linux
+```ruby
 # menu
 # input number to select
 1. Login
