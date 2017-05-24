@@ -14,7 +14,23 @@ Currently, I'm not too sure if a regular clone of this repo will give you a plug
 # to run the program
 ruby auth.rb
 ```
+```linux
+# menu
+# input number to select
+1. Login
+2. New Account
+3. Exit
+Selection:
+```
 
+When entering in credentials, the password fields are set to not display what you are typing. Just type your password and press enter. When creating a new user, the usernamename must not already exist within the database and the password must be inputed twice for safety.
+
+The current accounts are:
+username: a
+password: a
+
+username: b
+password: b
 ## Contributing
 
 1. Fork it!
