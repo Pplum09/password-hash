@@ -26,11 +26,12 @@ Selection:
 When entering in credentials, the password fields are set to not display what you are typing. Just type your password and press enter. When creating a new user, the username must not already exist within the database and the password must be inputed twice for safety.
 
 The current accounts are:
-username: a
-password: a
 
-username: b
-password: b
+| Username | Password |
+| -------- | -------- |
+|    a     |    a     |
+|    b     |    b     |
+
 ## Contributing
 
 1. Fork it!
