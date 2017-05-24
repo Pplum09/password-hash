@@ -26,21 +26,22 @@ def authenticate
     db = SQLite3::Database.open @db_file
 
     # construct query
-    query = 'SELECT * FROM ' + @table_name + ' WHERE USERNAME = "' + username + '";'
+    query = db.prepare "SELECT * FROM " + @table_name + " WHERE USERNAME = :username"
 
     # execute query
-    res = db.execute query
+    res = query.execute username
+    row = res.next
 
-    if res.empty?
+    if !row
       return false
 
-    # veryify password
-    elsif password == res.first[2]
-
+    # verify password
+    elsif password == row[2]
       return true
     end
 
   ensure
+  	query.close if query
     db.close if db
   end
 
@@ -67,10 +68,10 @@ def addUser
       db = SQLite3::Database.open @db_file
 
       # construct query
-      query = 'INSERT INTO ' + @table_name + '(username, password) VALUES("' + username + '","' + password + '");'
+      query = db.prepare 'INSERT INTO ' + @table_name + '(username, password) VALUES(:username, :password);'
 
       # execute query
-      db.execute query
+      query.execute username, password
 
     # used rescue non - unique / other constraints
     rescue SQLite3::ConstraintException
@@ -78,6 +79,7 @@ def addUser
       raise ArgumentError, 'username, ' + username + ', is already taken!'
 
     ensure
+    	query.close if query
       db.close if db
     end
 
